@@ -49,7 +49,7 @@ export const services: Service[] = [
     title: 'AFS & Independent Reviews',
     summary:
       'Independent and standards-aligned review engagements that strengthen governance and elevate confidence in your reporting.',
-    heroImage: '/images/service-afs.jpg',
+    heroImage: '/images/elephant-hero.jpg',
     cardImage: '/images/service-afs.jpg',
     subServices: [
       'Annual Financial Statement Compilation',
