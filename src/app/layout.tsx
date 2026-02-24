@@ -6,8 +6,16 @@ import { FloatingWhatsApp } from '@/components/FloatingWhatsApp';
 import { PageTransition } from '@/components/PageTransition';
 
 export const metadata: Metadata = {
-  title: 'The Great Elephant Consulting | Accounting & Financial Advisory',
-  description: 'Premium accounting, tax advisory, and strategic financial consulting services for South African businesses.',
+  title: 'The Great Elephant Consulting',
+  description:
+    'Professional accounting, tax, and financial consulting services for businesses and individuals across South Africa.',
+  icons: {
+    icon: [
+      { url: '/favicon.ico' },
+      { url: '/favicon.svg', type: 'image/svg+xml' }
+    ],
+    apple: [{ url: '/apple-touch-icon.png' }]
+  },
   openGraph: {
     title: 'The Great Elephant Consulting',
     description: 'Professional accounting and financial consulting you can trust.',
