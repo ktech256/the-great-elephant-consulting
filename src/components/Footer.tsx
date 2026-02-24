@@ -34,6 +34,9 @@ export function Footer() {
           <SocialLinks />
         </div>
       </div>
+      <div className="border-t border-white/5 px-6 pb-6 pt-4 text-center text-xs text-zinc-400">
+        Website designed and developed by <Link href="#" className="transition hover:text-zinc-300">Killian Studios</Link>.
+      </div>
     </footer>
   );
 }
