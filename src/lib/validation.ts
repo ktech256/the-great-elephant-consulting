@@ -2,7 +2,7 @@ import { z } from 'zod';
 import { services } from '@/data/services';
 
 const serviceTitles = services.map((service) => service.title);
-const subServices = services.flatMap((service) => service.subServices);
+const subServices = services.flatMap((service) => service.subServices.map((subService) => subService.title));
 
 export const consultationSchema = z.object({
   fullName: z.string().min(2, 'Please enter your full name.'),
