@@ -87,7 +87,7 @@ export function ConsultationForm({ defaultService }: Props) {
       <div>
         <select className={fields} {...register('subService')}>
           {selectedSubServices.map((subService) => (
-            <option key={subService} value={subService}>{subService}</option>
+            <option key={subService.title} value={subService.title}>{subService.title}</option>
           ))}
         </select>
       </div>

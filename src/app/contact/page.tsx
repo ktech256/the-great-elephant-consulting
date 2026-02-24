@@ -1,5 +1,6 @@
 import { HeroSection } from '@/components/HeroSection';
 import { ConsultationForm } from '@/components/ConsultationForm';
+import { SocialLinks } from '@/components/SocialLinks';
 
 export default function ContactPage() {
   return (
@@ -20,6 +21,8 @@ export default function ContactPage() {
             <p>Address: Fauna Park, Polokwane, 0700</p>
             <p>Website: www.tgec.co.za</p>
             <p>Email: inquiry@tgec.co.za</p>
+            <p className="mb-3 mt-5 text-xs font-semibold uppercase tracking-[0.2em] text-gold-500">Connect with us</p>
+            <SocialLinks iconSizeClass="h-12 w-12 md:h-14 md:w-14" />
           </div>
           <div className="relative h-64 rounded-2xl border border-white/10 bg-gradient-to-br from-zinc-800 to-gold-900/30 p-6">
             <p className="text-sm uppercase tracking-[0.2em] text-gold-500">Map Placeholder</p>
