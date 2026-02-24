@@ -6,3 +6,5 @@ out
 .next/
 node_modules/
 .vercel/
+cd
+taskkill
