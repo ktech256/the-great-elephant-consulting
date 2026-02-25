@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
 import { consultationSchema } from '@/lib/validation';
+import { CONTACT_CONFIG } from '@/lib/contactConfig';
 
 export async function POST(request: Request) {
   try {
@@ -13,20 +14,33 @@ export async function POST(request: Request) {
 
     const data = parsed.data;
 
+    const smtpHost = process.env.SMTP_HOST;
+    const smtpUser = process.env.SMTP_USER;
+    const smtpPass = process.env.SMTP_PASS;
+
+    if (!smtpHost || !smtpUser || !smtpPass) {
+      return NextResponse.json(
+        { ok: false, error: 'SMTP is not configured on this environment.' },
+        { status: 500 }
+      );
+    }
+
     const transporter = nodemailer.createTransport({
-      host: process.env.SMTP_HOST,
+      host: smtpHost,
       port: Number(process.env.SMTP_PORT ?? 587),
       secure: false,
       auth: {
-        user: process.env.SMTP_USER,
-        pass: process.env.SMTP_PASS
+        user: smtpUser,
+        pass: smtpPass
       }
     });
 
+    const receiver = process.env.CONTACT_RECEIVER_EMAIL ?? CONTACT_CONFIG.TO_EMAIL;
+
     await transporter.sendMail({
-      from: process.env.SMTP_USER,
-      to: process.env.CONTACT_RECEIVER_EMAIL ?? 'inquiry@tgec.co.za',
-      subject: `TGEC Consultation Request — ${data.service} / ${data.subService}`,
+      from: smtpUser,
+      to: receiver,
+      subject: `${CONTACT_CONFIG.SUBJECT_PREFIX} — ${data.service} / ${data.subService}`,
       html: `
         <h2>TGEC Consultation Request</h2>
         <p><strong>Name:</strong> ${data.fullName}</p>
