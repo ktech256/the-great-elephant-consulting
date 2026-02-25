@@ -28,6 +28,18 @@ async function postJson(url: string, payload: unknown) {
   return { ok: res.ok, status: res.status, json };
 }
 
+// subServices can be either string[] or { title: string }[]
+function normalizeSubServices(input: unknown): string[] {
+  if (!Array.isArray(input)) return [];
+  return input
+    .map((item) => {
+      if (typeof item === 'string') return item;
+      if (item && typeof item === 'object' && 'title' in (item as any)) return String((item as any).title);
+      return '';
+    })
+    .filter(Boolean);
+}
+
 export function ConsultationForm({ defaultService }: Props) {
   const [success, setSuccess] = useState('');
 
@@ -46,7 +58,8 @@ export function ConsultationForm({ defaultService }: Props) {
 
   const selectedSubServices = useMemo(() => {
     const match = services.find((service) => service.title === selectedService);
-    return (match?.subServices ?? services[0]?.subServices ?? []) as string[];
+    const fallback = services[0];
+    return normalizeSubServices(match?.subServices ?? fallback?.subServices ?? []);
   }, [selectedService]);
 
   const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
